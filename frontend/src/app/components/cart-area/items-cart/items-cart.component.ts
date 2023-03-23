@@ -49,8 +49,7 @@ export class ItemsCartComponent implements OnInit {
         this.myCart = clientStore.getState().cart;
       })
       this.items = await this.itemService.itemsByCart(this.myCart._id);
-       console.log(this.items);
-    } catch (error) {
+      } catch (error) {
       console.log(error);
     }
   }

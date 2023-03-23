@@ -24,6 +24,7 @@
     "angular-animate": "^1.8.3",
     "angular-material-sidenav": "^0.1.1",
     "bootstrap": "^5.2.3",
+    "fuse.js": "^6.6.2",
     "html-to-text": "^9.0.4",
     "jspdf": "^2.5.1",
     "jwt-decode": "^3.1.2",

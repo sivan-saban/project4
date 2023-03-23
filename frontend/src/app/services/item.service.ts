@@ -19,8 +19,7 @@ public async AddItemToCart(item:ItemModel): Promise<any> {
     if(checkCart){
     const observable = this.http.post<ItemModel>(appConfig.addItemUrl, item);
     const addItem = await firstValueFrom(observable);
-    itemStore.dispatch({ type: ItemActionType.AddItem, payload: addItem })
-    console.log(addItem)
+    itemStore.dispatch({ type: ItemActionType.AddItem, payload: item })
     return addItem;
     }
     else{
@@ -67,14 +66,8 @@ public async itemsByCart(cartId: string): Promise<ItemModel[]> {
 
     //update item
     public async updateItem(item: ItemModel): Promise<void> {
-      console.log(item);
-      const updateItem:ItemModel={
-        productId: item.productId,
-        qty:item.qty,
-        total_price:item.total_price,
-        cartId:item.cartId
-      }
-      const observable = this.http.patch<ItemModel>(appConfig.updateItemUrl + item._id, updateItem);
+
+      const observable = this.http.put<ItemModel>(appConfig.updateItemUrl + item._id, item);
       await firstValueFrom(observable);
       itemStore.dispatch({ type: ItemActionType.UpdateItem, payload: item })
 
