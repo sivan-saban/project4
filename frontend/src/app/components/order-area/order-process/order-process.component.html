@@ -26,7 +26,7 @@
     </div>
 
     <div class="form-group">
-      <input matInput [matDatepicker]="picker" [matDatepickerFilter]="dateFilter" placeholder="Choose/Enter a delivery date" formControlName="arrival_date">
+      <input  type="date" [min]="minDate" matInput [matDatepicker]="picker" [matDatepickerFilter]="dateFilter" placeholder="Choose/Enter a delivery date" formControlName="arrival_date">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </div><br/>
