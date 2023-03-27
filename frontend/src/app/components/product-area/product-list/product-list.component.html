@@ -23,6 +23,6 @@
 
 <div class="scroll">
   <button class="back btn btn-primary" (click)="backToMenu()" style="width: max-content;">Back to Menu</button>
-  <app-product-card *ngFor="let p of temp" [product]="p" (deleteMe)="deleteProduct(p._id)" ></app-product-card>
+  <app-product-card *ngFor="let p of temp" [product]="p"(updateMe)="updateProduct(p)" (deleteMe)="deleteProduct(p._id)" ></app-product-card>
 
 </div>

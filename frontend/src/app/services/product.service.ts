@@ -89,5 +89,12 @@ export class ProductService {
       return products;
     }
 
+ //update product
+ public async updateProduct(product: ProductModel): Promise<void> {
+  const observable = this.http.patch<ProductModel>(appConfig.updateProductUrl+product._id , product);
+  await firstValueFrom(observable);
+  //update product to global state
+  productsStore.dispatch({ type: ProductActionType.UpdateProduct, payload: product })
+}
 }
 

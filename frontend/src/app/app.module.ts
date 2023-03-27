@@ -43,6 +43,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { UpdateProductComponent } from './components/product-area/update-product/update-product.component';
 
 
 @NgModule({
@@ -76,7 +77,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     OrderDetailsComponent,
     OrderProcessComponent,
     OrderCompleteComponent,
-    HighlighterPipe
+    HighlighterPipe,
+    UpdateProductComponent
 
   ],
   imports: [

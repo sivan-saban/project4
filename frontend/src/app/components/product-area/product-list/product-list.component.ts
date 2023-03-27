@@ -88,4 +88,9 @@ export class ProductListComponent implements OnInit{
       this.isExist=true;
     }
   }
+
+  public async updateProduct(product: ProductModel) {
+    console.log(product);
+    this.router.navigate(['/update', product], { state: { product } });
+  }
 }

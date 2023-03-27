@@ -74,7 +74,7 @@ public async send() {
   try{
     await this.loginService.register(this.newClient);
     alert(`welcome ${this.newClient.first_name}!`);
-    this.router.navigateByUrl("/products");
+    this.router.navigateByUrl("/login");
   }
   catch(err:any){
     console.log(err);

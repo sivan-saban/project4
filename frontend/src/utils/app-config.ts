@@ -8,7 +8,7 @@ class AppConfig {
     public getProductByIdUrl = "http://localhost:3004/product/single/";
     public addProductUrl = "http://localhost:3004/product/add";
     public productsByCategory = "http://localhost:3004/product/category/";
-
+    public updateProductUrl = "http://localhost:3004/product/update/";
     //category
     public getAllCategoryUrl = "http://localhost:3004/category/all";
     //carts

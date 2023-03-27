@@ -14,6 +14,7 @@ import { ProductListComponent } from './components/product-area/product-list/pro
 import { LayoutUserComponent } from './components/layout-area/layout-user/layout-user.component';
 import { ProductListUserComponent } from './components/product-user-area/product-list-user/product-list-user.component';
 import { OrderComponent } from './components/order-area/order/order.component';
+import { UpdateProductComponent } from './components/product-area/update-product/update-product.component';
 
 const routes: Routes = [
   { path:"login-main", component: LoginMainComponent },
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path:"products/user", component:ProductListUserComponent},
   { path:"register", component: RegisterComponent },
   { path:"products/new", component: AddProductComponent },
+  { path:"update", component: UpdateProductComponent },
   { path:"about", component: AboutComponent },
   { path:"order", component:OrderComponent},
   { path:"" , redirectTo:"/home", pathMatch: "full" },

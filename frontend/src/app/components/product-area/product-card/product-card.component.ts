@@ -15,12 +15,17 @@ export class ProductCardComponent {
 //create new event
 @Output()
 public deleteMe = new EventEmitter<string>();
+@Output()
+public updateMe = new EventEmitter<ProductModel>();
 
 
 //report to father what you sent him
 
 public async deleteProduct() {
   this.deleteMe.emit(this.product._id);
+}
+public async updateProduct() {
+  this.updateMe.emit(this.product);
 }
 
 

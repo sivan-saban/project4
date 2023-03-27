@@ -12,7 +12,8 @@ export enum ProductActionType {
     AllProducts = "AllProducts",
     AddProduct = "AddProduct",
     DeleteProduct = "DeleteProduct",
-    SingleProduct = "SingleProduct"
+    SingleProduct = "SingleProduct",
+    UpdateProduct = "UpdateProduct"
 }
 
 //3. Action
@@ -50,6 +51,11 @@ export function productsReducer(currentState = new ProductState(), action:Produc
             //newState.products.filter(p => p !== action.payload);
             newState.products[0] = action.payload;
             console.log(newState.products);
+            break;
+
+            case ProductActionType.UpdateProduct:
+            const indexToUpdate = newState.products.findIndex(i => i._id === action.payload);
+            newState.products[indexToUpdate] = action.payload;
             break;
    }
     return newState;
