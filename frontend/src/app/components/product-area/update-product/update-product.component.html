@@ -22,8 +22,8 @@
       <div  class="form-group">
         <label for="categoryId">Category:</label>
         <select formControlName="categoryId" class="form-control" style="width: auto;">
-          <option [value]="product.categoryId.name">--Select a category--</option>
-              <option *ngFor="let category of categories" [value]="category._id" ></option>
+          <option [value]="">--Select a category--</option>
+          <option *ngFor="let category of categories" [value]="category._id">{{category.name}}</option>
         </select>
         <p *ngIf="productForm.get('categoryId').invalid && productForm.get('categoryId').touched" class="error">
           Category is required.
