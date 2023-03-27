@@ -43,7 +43,7 @@ export class UpdateProductComponent implements OnInit {
       };
     console.log(newProduct);
     try{
-      await this.productService.updateProduct(newProduct);
+      await this.productService.updateProduct(newProduct, this.product._id);
     this.router.navigateByUrl("/products");
     }
     catch(err:any){

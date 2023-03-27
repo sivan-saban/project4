@@ -66,7 +66,6 @@ public async itemsByCart(cartId: string): Promise<ItemModel[]> {
 
     //update item
     public async updateItem(item: ItemModel): Promise<void> {
-
       const observable = this.http.put<ItemModel>(appConfig.updateItemUrl + item._id, item);
       await firstValueFrom(observable);
       itemStore.dispatch({ type: ItemActionType.UpdateItem, payload: item })

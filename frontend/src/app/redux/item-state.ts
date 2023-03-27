@@ -47,7 +47,6 @@ export function itemsReducer(currentState = new ItemState(), action:ItemAction):
             }
             break;
 
-            case ItemActionType.UpdateItem:
             case ItemActionType.FindItem://the payload here is the single product by id
             newState.items.filter(i => i !== action.payload);
             newState.items[0] = action.payload;
@@ -57,6 +56,11 @@ export function itemsReducer(currentState = new ItemState(), action:ItemAction):
             case ItemActionType.DeleteAll:
             newState.items= [];
             console.log(newState.items);
+            break;
+
+            case ItemActionType.UpdateItem:
+            const indexToUpdate = newState.items.findIndex(i => i._id === action.payload._id);
+            newState.items[indexToUpdate] = action.payload;
             break;
 
 

@@ -90,11 +90,20 @@ export class ProductService {
     }
 
  //update product
- public async updateProduct(product: ProductModel): Promise<void> {
-  const observable = this.http.patch<ProductModel>(appConfig.updateProductUrl+product._id , product);
+ public async updateProduct(product: ProductModel, _id:string): Promise<void> {
+  console.log(_id);
+  const myProduct: ProductModel={
+    _id: _id,
+    name: product.name,
+    categoryId: product.categoryId,
+    price: product.price,
+    image: product.image
+  }
+  console.log(myProduct);
+  const observable = this.http.patch<ProductModel>(appConfig.updateProductUrl+_id , product);
   await firstValueFrom(observable);
   //update product to global state
-  productsStore.dispatch({ type: ProductActionType.UpdateProduct, payload: product })
+  productsStore.dispatch({ type: ProductActionType.UpdateProduct, payload: myProduct })
 }
 }
 

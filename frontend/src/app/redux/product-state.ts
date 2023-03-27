@@ -54,7 +54,7 @@ export function productsReducer(currentState = new ProductState(), action:Produc
             break;
 
             case ProductActionType.UpdateProduct:
-            const indexToUpdate = newState.products.findIndex(i => i._id === action.payload);
+            const indexToUpdate = newState.products.findIndex(i => i._id === action.payload._id);
             newState.products[indexToUpdate] = action.payload;
             break;
    }
