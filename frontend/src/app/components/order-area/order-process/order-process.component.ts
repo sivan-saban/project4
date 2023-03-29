@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { OrderModel } from 'src/app/models/order.model';
 import { clientStore } from 'src/app/redux/login-state';
@@ -9,6 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ItemModel } from 'src/app/models/item.model';
 import { ItemService } from 'src/app/services/item.service';
 import { CartModel } from 'src/app/models/cart.model';
+import { ClientModel } from 'src/app/models/client.model';
 
 //בשביל חסימת תאריכים
 export interface Times {
@@ -33,6 +34,10 @@ export class OrderProcessComponent implements OnInit{
   public sum:number=0;
   public myCart:CartModel;
   blockedDates: Date[];
+  // currentClient:ClientModel;
+  clientCity:string;
+  clientStreet:string;
+
   //כדי שבבחירת תאריך לא יתן אפשרות לבחור תאריך ישן
   public minDate: Date = new Date();
 
@@ -40,16 +45,31 @@ export class OrderProcessComponent implements OnInit{
               private orderService: OrderService,
               private loginService: LoginService,
               private itemService:ItemService,
+              private renderer: Renderer2,
               public dialog: MatDialog ) {
     this.myForm = this.formBuilder.group({
       city: ['', Validators.required],
       street: ['', Validators.required],
       arrival_date:['',Validators.required],
-      last_fourCC:['',[Validators.required,Validators.pattern(/^[0-9]*$/),Validators.maxLength(16),Validators.minLength(16)]],
+      last_fourCC:['',[Validators.required,Validators.pattern(/^[0-9]*$/)]],
       // sum:['',Validators.required],
     });
 
     }
+    // @ViewChild('mySelect') mySelect: ElementRef;
+    selectedOption: string;
+    myStreet:string;
+    selectOption() {
+      this.selectedOption=this.clientCity;
+      console.log(this.selectedOption)
+    }
+    onDoubleClick(){
+      this.myStreet=this.clientStreet;
+    }
+    // onDoubleClick(value: string, inputElement: HTMLInputElement) {
+
+    //     this.renderer.setProperty(inputElement, 'value', value);
+    // }
 
     public checkDates(orders:OrderModel[]){
       let temp:Date[]=[];
@@ -76,6 +96,10 @@ export class OrderProcessComponent implements OnInit{
     }
 
   public async ngOnInit() {
+    this.clientCity=clientStore.getState().client.city;
+    this.clientStreet= clientStore.getState().client.street;
+    console.log(this.clientCity,this.clientStreet);
+    // this.currentClient=await this.loginService.getClientById(clientStore.getState().client.)
     this.cities = await this.loginService.getCities(this.myCountry);
     this.allOrders=await this.orderService.getAllOrders();
     this.items = await this.itemService.itemsByCart(clientStore.getState().cart._id);

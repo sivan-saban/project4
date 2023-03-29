@@ -1,23 +1,23 @@
 <div class=login>
-    
-    <div *ngIf="!client" >
 
-        <span>Hello Guest | </span>
+  <div *ngIf="!client" >
 
-        <a routerLink="/login">Login</a>
+      <span>Hello Guest | </span>
 
-        <span> | </span>
+      <a routerLink="/login">Login</a>
 
-        <a routerLink="/register">Register</a>
+      <span> | </span>
 
-    </div>
+      <a routerLink="/register">Register</a>
 
-    <div *ngIf="client" >
+  </div>
 
-        <span>Hello {{client.first_name}} {{client.last_name}} | </span>
+  <div *ngIf="client" >
 
-        <a routerLink="/login" (click)="logout()">Logout</a>
+      <span>Hello {{client.first_name}} {{client.last_name}} | </span>
 
-    </div>
+      <a routerLink="/login" (click)="logout()">Logout</a>
+
+  </div>
 
 </div>

@@ -13,3 +13,4 @@ export class AboutComponent {
     this.router.navigateByUrl("/layout-admin");
   }
 }
+

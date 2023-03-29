@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
 import { ItemModel } from 'src/app/models/item.model';
 import { ProductModel } from 'src/app/models/product.model';
 import { clientStore } from 'src/app/redux/login-state';
@@ -7,6 +7,11 @@ import { ProductService } from 'src/app/services/product.service';
 import { Router } from '@angular/router';
 import { itemStore } from 'src/app/redux/item-state';
 import { CategoryModel } from 'src/app/models/category.model';
+import { Observable} from 'rxjs';
+import { map, shareReplay } from 'rxjs/operators';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { MatDialog } from '@angular/material/dialog';
+import { UpdateProductComponent } from '../update-product/update-product.component';
 
 @Component({
   selector: 'app-product-list',
@@ -20,9 +25,21 @@ export class ProductListComponent implements OnInit{
   public allItems : ItemModel[];
   public categories: CategoryModel[];
 
+  public openDialog(product:ProductModel) {
+    const dialogRef = this.dialog.open(UpdateProductComponent, {
+      data: product
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
   //DI= Dependency Injection, we get object kind of service
   //angular inject object by constructor to this component
-  constructor(private productService: ProductService, private itemService: ItemService,private router: Router) {}
+  constructor(private productService: ProductService,
+              private itemService: ItemService,
+              private router: Router,
+              public dialog: MatDialog) {}
 
   buttonWidth = '85px'; // default button width
 
@@ -88,9 +105,9 @@ export class ProductListComponent implements OnInit{
       this.isExist=true;
     }
   }
-
   public async updateProduct(product: ProductModel) {
     console.log(product);
-    this.router.navigate(['/update', product], { state: { product } });
+    this.openDialog(product);
+    // this.router.navigate(['/update', product], { state: { product } });
   }
 }

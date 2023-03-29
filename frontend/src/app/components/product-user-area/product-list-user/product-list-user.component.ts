@@ -22,7 +22,7 @@ export class ProductListUserComponent implements OnInit {
   public newItem: ItemModel;
   public allItems : ItemModel[];
 
-  buttonWidth = '85px'; // default button width
+  buttonWidth = '90px'; // default button width
 
   @HostListener('window:resize', ['$event'])
   onResize(event:any) {
@@ -93,7 +93,8 @@ export class ProductListUserComponent implements OnInit {
       }
 
     } catch (err) {
-      alert(err);
+      console.log(err);
+      // alert(err);
     }
   }
   // onSearch() {

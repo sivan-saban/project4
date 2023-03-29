@@ -1,58 +1,61 @@
-<p>update-product works!</p>
-<p>update-product works!</p>
+<mat-dialog-content class="mat-typography">
 
-<button class="back btn btn-primary" (click)="backToMenu()" style="width: max-content;" >Back to Menu</button>
+  <div class="main">
 
-<div class="main">
-    <div class="card-container" >
-      <h1 style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;font-size: xx-large;font-weight: 600;">Edit Product</h1><br/><br/>
-    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+        <div class="card-container" >
+          <h1 style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;font-size: xx-large;font-weight: 600;">Edit Product</h1><br/><br/>
+        <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
 
-      <div  class="form-group">
-        <label for="name">Name:</label>
-        <input type="text" id="name" formControlName="name" class="form-control" [value]="product.name">
-        <span *ngIf="productForm.get('name').invalid && (productForm.get('name').dirty || productForm.get('name').touched)">
-          <p *ngIf="productForm.get('name').errors['required']">Name is required.</p>
-          <p *ngIf="productForm.get('name').errors['minlength']">Name must be at least 3 characters long.</p>
-          <p *ngIf="productForm.get('name').errors['maxlength']">Name cannot be more than 50 characters long.</p>
-          <p *ngIf="productForm.get('name').errors['forbiddenName']">Name cannot be 'admin'.</p>
-        </span>
+          <div  class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" formControlName="name" class="form-control" [value]="product.name" [ngModel]="product.name">
+            <span *ngIf="productForm.get('name').invalid && (productForm.get('name').dirty || productForm.get('name').touched)">
+              <p *ngIf="productForm.get('name').errors['required']">Name is required.</p>
+              <p *ngIf="productForm.get('name').errors['minlength']">Name must be at least 3 characters long.</p>
+              <p *ngIf="productForm.get('name').errors['maxlength']">Name cannot be more than 50 characters long.</p>
+              <p *ngIf="productForm.get('name').errors['forbiddenName']">Name cannot be 'admin'.</p>
+            </span>
+          </div>
+
+          <div  class="form-group">
+            <label for="categoryId">Category:</label>
+            <select formControlName="categoryId" class="form-control" style="width: auto;" [ngModel]="currentCategory">
+              <option [value]="">--Select a category--</option>
+              <option *ngFor="let category of categories" [value]="category._id">{{category.name}}</option>
+            </select>
+            <p *ngIf="productForm.get('categoryId').invalid && productForm.get('categoryId').touched" class="error">
+              Category is required.
+            </p>
+        </div>
+
+          <div  class="form-group">
+            <label for="price">Price:</label>
+            <input type="number" id="price" formControlName="price" class="form-control" [value]="product.price" [(ngModel)]="product.price">
+            <span class="note" *ngIf="productForm.get('price').invalid && (productForm.get('price').dirty || productForm.get('price').touched)">
+              <p *ngIf="productForm.get('price').errors['required']">Price is required.</p>
+              <p *ngIf="productForm.get('price').errors['min']">Price cannot be less than 0.01.</p>
+              <p *ngIf="productForm.get('price').errors['max']">Price cannot be more than 10000.</p>
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label for="image">Image:</label>
+            <input type="text" id="image" formControlName="image" class="form-control" style="width: 80%"[value]="product.image" [ngModel]="product.image">
+            <span *ngIf="productForm.get('image').invalid && (productForm.get('image').dirty || productForm.get('image').touched)">
+              <p *ngIf="productForm.get('image').errors['required']">Image is required.</p>
+              <p *ngIf="productForm.get('image').errors['pattern']">Image must be a valid URL for a JPG, GIF, or PNG file.</p>
+            </span>
+          </div>
+          <mat-dialog-actions align="end">
+            <button mat-button mat-dialog-close [disabled]="productForm.invalid" class="btn btn-primary" type="submit">Update Product</button>
+            <!-- <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button> -->
+          </mat-dialog-actions>
+          <!-- <button  class="btn btn-primary position-absolute top-90 start-50 end-50 translate-middle" mat-button type="submit">Edit Product</button> -->
+
+        </form>
       </div>
 
-      <div  class="form-group">
-        <label for="categoryId">Category:</label>
-        <select formControlName="categoryId" class="form-control" style="width: auto;">
-          <option [value]="">--Select a category--</option>
-          <option *ngFor="let category of categories" [value]="category._id">{{category.name}}</option>
-        </select>
-        <p *ngIf="productForm.get('categoryId').invalid && productForm.get('categoryId').touched" class="error">
-          Category is required.
-        </p>
-    </div>
 
-      <div  class="form-group">
-        <label for="price">Price:</label>
-        <input type="number" id="price" formControlName="price" class="form-control" [value]="product.price">
-        <span class="note" *ngIf="productForm.get('price').invalid && (productForm.get('price').dirty || productForm.get('price').touched)">
-          <p *ngIf="productForm.get('price').errors['required']">Price is required.</p>
-          <p *ngIf="productForm.get('price').errors['min']">Price cannot be less than 0.01.</p>
-          <p *ngIf="productForm.get('price').errors['max']">Price cannot be more than 10000.</p>
-        </span>
-      </div>
-
-      <div class="form-group">
-        <label for="image">Image:</label>
-        <input type="text" id="image" formControlName="image" class="form-control" style="width: 80%"[value]="product.image" >
-        <span *ngIf="productForm.get('image').invalid && (productForm.get('image').dirty || productForm.get('image').touched)">
-          <p *ngIf="productForm.get('image').errors['required']">Image is required.</p>
-          <p *ngIf="productForm.get('image').errors['pattern']">Image must be a valid URL for a JPG, GIF, or PNG file.</p>
-        </span>
-      </div>
-
-      <button  class="btn btn-primary position-absolute top-90 start-50 end-50 translate-middle" mat-button type="submit">Edit Product</button>
-
-    </form>
   </div>
-</div>
-
+</mat-dialog-content>
 

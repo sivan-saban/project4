@@ -11,7 +11,7 @@ import { ItemService } from 'src/app/services/item.service';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-
+  displayedColumns: string[] = ['demo-position', 'demo-name', 'demo-weight', 'demo-symbol','demo-delete'];
 @Input()
 public item: ItemModel;
 

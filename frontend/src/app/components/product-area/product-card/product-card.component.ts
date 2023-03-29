@@ -7,7 +7,6 @@ import { ProductModel } from 'src/app/models/product.model';
   styleUrls: ['./product-card.component.css']
 })
 export class ProductCardComponent {
-
   @Input()
   public product: ProductModel;//props
 

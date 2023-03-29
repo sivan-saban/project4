@@ -1,11 +1,13 @@
-<div class="card-container">
-    <img class="border-0" src="{{item.productId.image}}" /> <br/>
-    name:<span style="font-size: 12px;">{{item.productId.name}} <br/></span>
-    <div style="text-align: left;">
-      qty:{{item.qty}}<input type="number" [(ngModel)]="item.qty"(ngModelChange)="onQuantityChange()" /><br/>
-      price: {{item.productId.price}} <br/>
-      total price:{{item.total_price | currency:"ILS" }}
-    </div>
-    <button class="btn btn-outline-danger" data-toggle="tooltip" data-placement="top" title="Delete from cart" (click)="deleteItem()" >🗑</button><br/>
-</div>
+<table class="item-table">
+  <tr>
+    <td class="image"><img class="border-0" style="width: 45px;height: 35px;" src="{{item.productId.image}}" /></td>
+    <td class="name">{{item.productId.name}}</td>
+    <td class="qty">qty: <input type="number" [(ngModel)]="item.qty"(ngModelChange)="onQuantityChange()" /></td>
+    <!-- <td class="price">{{item.productId.price}}</td> -->
+    <td class="total_price">{{item.total_price | currency:"ILS" }}</td>
+    <td class="button"><button class="btn btn-outline-danger border-0" data-toggle="tooltip" data-placement="top" title="Delete from cart" (click)="deleteItem()" ><mat-icon>delete</mat-icon></button></td>
+  </tr>
+
+</table>
+
 

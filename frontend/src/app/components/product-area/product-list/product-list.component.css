@@ -1,3 +1,20 @@
 .scroll {
     overflow: auto;
 }
+#drawer{
+  max-width: 300px;
+
+}
+.example-sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.example-sidenav {
+  padding: 5px;
+  max-width: 400px;
+
+}
+
